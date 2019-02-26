@@ -1,6 +1,5 @@
 package AmarpalAmrith.FizzBuzz;
 
-import com.sun.java.util.jar.pack.Instruction;
 
 import java.util.Random;
 import java.util.Scanner;
