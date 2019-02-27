@@ -1,7 +1,8 @@
 package AmarpalAmrith.FizzBuzz;
 
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -9,33 +10,21 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to the Calculator!");
 
-        Random Rn = new Random();
         Scanner Input = new Scanner(System.in);
-        System.out.println("Please enter the first Number:");
-        int No1 = Input.nextInt();
-        System.out.println("Please enter the second Number:");
-        int No2 = Input.nextInt();
+        List <Integer> myList = new ArrayList<>();
+        for (int i1 = 1; ; i1++){
+            System.out.println("Please enter Number " + i1);
+            if (Input.hasNextInt()) {
+                myList.add(Input.nextInt());
+            } else {
+                System.out.println(Input.next() + " is not a number");
+                break;
+            }
+        }
+
         System.out.println("Please enter the operator ( *, +, -, /):");
         String symbol = Input.next();
-        System.out.println("Number 1 is: " + No1);
 
-        System.out.println("Number 2 is: " + No2);
-        String operator = "";
-        switch (symbol) {
-            case "+":
-                operator = "Add";
-                break;
-            case "-":
-                operator = "Subtract";
-                break;
-            case "*":
-                operator = "Multiple";
-                break;
-            case "/":
-                operator = "Divide";
-                break;
-        }
-        System.out.println("Calculation is: " + No1 + " " + operator + " " + No2);
         TheCalculator Calculate;
         if (symbol.equals("*")) {
             Calculate = new Multiply();
@@ -49,7 +38,10 @@ public class Main {
             System.exit(1);
             return;
         }
-
-        System.out.println(Calculate.calculator(No1, No2));
+        int result = myList.get(0);
+        for (int i = 1; i <= myList.size() - 1; i++){
+            result = Calculate.calculator(result, myList.get(i));
+        }
+        System.out.println("Answer is: " + result);
     }
 }
